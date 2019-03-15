@@ -1,0 +1,6 @@
+{{ if isset .Site.Params "debug"}}
+    <style>
+  {{ partial "debugprint.css" | safeCSS }}
+
+    </style>
+         {{ end }}

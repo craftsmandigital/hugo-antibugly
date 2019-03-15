@@ -1,0 +1,4 @@
+
+{{ if isset .Site.Params "debug"}}
+  {{- partial "debugprint.html" . -}}
+{{ end }}
