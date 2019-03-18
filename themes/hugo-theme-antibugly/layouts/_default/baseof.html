@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang= "{{ .Site.LanguageCode }}" dir="ltr" itemscope itemtype="http://schema.org/Article">
   <head>
     {{- partial "head.html" . -}}
     {{- partial "style.html" . -}}
   </head>
-    <body>
+    <body style="min-height:100vh;display:flex;flex-direction:column">
         {{- partial "header.html" . -}}
-        <div id="content">
+        {{/* <div id="content"> */}}
+        <section class="section" style="flex:1">
         {{- block "main" . }}{{- end }}
-        </div>
+        </section>
+        {{/* </div> */}}
         {{- partial "footer.html" . -}}
         {{- partial "footer-post.html" . -}}
     </body>

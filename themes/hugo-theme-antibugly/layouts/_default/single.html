@@ -1,6 +1,18 @@
 {{ define "main" }}
 
-<h1>{{ .Title }}</h1>
-{{ .Content }}
+      <!-- Content -->
+      <div class="container">
+        <p class="title">{{ .Title }}</p>
+        <p class="subtitle">{{ .Date.Format "Jan 2, 2006" }}</p>
+
+        {{/* {{ partial "toc.html" . }} */}}
+        
+        <div class="content">
+          {{ .Content }}
+        </div>
+
+        {{/* {{ partial "gitinfo.html" . }}
+        {{ partial "taglist.html" . }} */}}
+      </div>
 
 {{ end }}
