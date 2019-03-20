@@ -18,12 +18,22 @@
       <br>
           {{ end }}
 
-        {{/* {{ partial "column" (dict "context" . "Inner" "Halla 1") }}
-        {{ partial "column" (dict "context" . "Inner" "Halla 2 ") }}
-        {{ partial "column" (dict "context" . "Inner" "Halla 3 ") }}
-        {{ partial "column" (dict "context" . "Inner" "Halla 4 ") }}
-        {{ partial "column" (dict "context" . "Inner" "Halla 5 ") }}
-        {{ partial "column" (dict "context" . "Inner" "Halla 6 ") }} */}}
+{{ $dictionary := newScratch }}
+{{/* {{ $dictionary := dict }} */}}
+
+{{ $dictionary.Set "context" . }}
+{{ $dictionary.Set "Inner" "Gutta voice 1" }}
+        {{ partial "test-column" $dictionary }}
+{{ $dictionary.Set "Inner" "Gutta voice 2" }}
+        {{ partial "test-column" $dictionary }}
+{{ $dictionary.Set "Inner" "Gutta voice 3" }}
+        {{ partial "test-column" $dictionary }}
+{{ $dictionary.Set "Inner" "Gutta voice 4" }}
+        {{ partial "test-column" $dictionary }}
+{{ $dictionary.Set "Inner" "Gutta voice 5" }}
+        {{ partial "test-column" $dictionary }}
+{{ $dictionary.Set "Inner" "Gutta voice 6" }}
+        {{ partial "test-column" $dictionary }}
         {{- range .Paginator.Pages }}
           {{ .Render "summary" }}
         {{- end }}
