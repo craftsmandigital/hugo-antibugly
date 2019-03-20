@@ -8,6 +8,22 @@
         <p class="title">{{ .Kind | title }}: {{ .Title }}</p>
         {{- end }}
 
+          {{ with .Content }}
+          <p>XXX Her finnes det innhold</p>
+      <br>
+           {{ . }}
+      <br>
+      <br>
+      <br>
+      <br>
+          {{ end }}
+
+        {{/* {{ partial "column" (dict "context" . "Inner" "Halla 1") }}
+        {{ partial "column" (dict "context" . "Inner" "Halla 2 ") }}
+        {{ partial "column" (dict "context" . "Inner" "Halla 3 ") }}
+        {{ partial "column" (dict "context" . "Inner" "Halla 4 ") }}
+        {{ partial "column" (dict "context" . "Inner" "Halla 5 ") }}
+        {{ partial "column" (dict "context" . "Inner" "Halla 6 ") }} */}}
         {{- range .Paginator.Pages }}
           {{ .Render "summary" }}
         {{- end }}
