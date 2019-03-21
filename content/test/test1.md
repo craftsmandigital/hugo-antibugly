@@ -10,19 +10,13 @@ draft: false
 
 {{< columns colsizes=" oo oo2 4 s6f sa " settings="zebra mirror" _class="box">}}
 
-{{% column %}} test morro {{% /column %}}
-
-{{% column %}} test morro {{% /column %}}
-
-{{% column %}} test morro {{% /column %}}
-
-{{% column %}} test morro {{% /column %}}
-
-{{% column %}} test morro {{% /column %}}
-
-{{% column %}} test morro {{% /column %}}
-
-{{% column %}} test morro {{% /column %}}
+{{% test-column2 %}} test morro {{% /test-column2 %}}
+{{% test-column2 %}} test morro {{% /test-column2 %}}
+{{% test-column2 %}} test morro {{% /test-column2 %}}
+{{% test-column2 %}} test morro {{% /test-column2 %}}
+{{% test-column2 %}} test morro {{% /test-column2 %}}
+{{% test-column2 %}} test morro {{% /test-column2 %}}
+{{% test-column2 %}} test morro {{% /test-column2 %}}
 
 
 

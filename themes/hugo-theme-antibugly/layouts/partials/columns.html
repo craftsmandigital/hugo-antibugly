@@ -18,5 +18,7 @@
 {{ end }}
 
 <div class="{{ $class }}">
-  {{ .Inner }}
+{{ range where .Get "Inner" }}
+  {{ partial "test-column" . }}
+{{ end }}
 </div>

@@ -21,6 +21,12 @@
 {{ $dictionary := newScratch }}
 {{/* {{ $dictionary := dict }} */}}
 
+{{ $dictionary.Set "colsizes" " oo oo2 4 s6f sa " }}
+{{ $dictionary.Set "settings" "zebra mirror" }}
+{{ $dictionary.Set "_class" "box" }}
+{{ partial "test-column2" (dict "context" . "Parent" $dictionary) }}
+
+{{/* 
 {{ $dictionary.Set "context" . }}
 {{ $dictionary.Set "Inner" "Gutta voice 1" }}
         {{ partial "test-column" $dictionary }}
@@ -33,7 +39,8 @@
 {{ $dictionary.Set "Inner" "Gutta voice 5" }}
         {{ partial "test-column" $dictionary }}
 {{ $dictionary.Set "Inner" "Gutta voice 6" }}
-        {{ partial "test-column" $dictionary }}
+        {{ partial "test-column" $dictionary }} */}}
+
         {{- range .Paginator.Pages }}
           {{ .Render "summary" }}
         {{- end }}

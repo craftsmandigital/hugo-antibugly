@@ -58,6 +58,7 @@ This shortcode is dependent of the columns.html shortcode and can not live outsi
 {{ $horizontalColCounter := sub (.context.Page.Scratch.Get "count") 1 }} {{/* array count starts at 0 */}}
 
 
+
 {{ with (split $colsizes " ")  }}
   {{ $colCount :=  len . }}
   {{ $colInRow := mod $horizontalColCounter $colCount }}
