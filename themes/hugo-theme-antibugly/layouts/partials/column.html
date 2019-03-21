@@ -26,38 +26,71 @@ This shortcode is dependent of the columns.html shortcode and can not live outsi
 
 
 
+{{/* Getting parameters from the parent shortcode colums */}}
+{{/* {{- with .Parent -}}
 
+   {{ with .Get "_class"}} 
+      {{ $dictionary.Set "class" . }}
+   {{ end }}
+
+   {{ with .Get "colsizes"}} 
+      {{ $dictionary.Set "colsizes" . }}
+   {{ end }}
+   
+   
+   {{ with .Get "settings"}} 
+      {{ $dictionary.Set "settings" . }}
+   {{ end }}
+
+{{ else }}
+    {{ errorf "The error is inside the page %s\nThis shortcode {{ column }} must be inside {{< columns >}} shortcode and can not live outside of {{< columns >}}\n" $.Page.Path }}
+{{ end }}
+ */}}
 
 
 
   
-{{/* 
 
-This shortcode is dependent of the columns.html shortcode and can not live outside of columns.html
+{{ with .Get "Parent"}}
 
- */}}
-
-   {{ with  .Get "class" }} 
-         {{ $class = (printf "%s %s" $class . ) }}{{/* Append to default values for column */}} 
+{{ with .Get "_class"}}
+         {{ $class = (printf "%s %s" $class . ) }}
    {{ end }}
 
-   {{ with .colsizes }} 
+   {{ with .Get "colsizes" }} 
       {{ $colsizes = . }} {{/* Overvite default values */}} 
       {{/* first removing non numbers exept spaces, then removing leading | trailing | extra spaces */}}
       {{/* https://stackoverflow.com/questions/19020079/removing-leading-trailing-and-multiple-spaces-within-a-string */}}
       {{ $colsizes = $colsizes  | replaceRE "[^0-9\\s]+" "" | replaceRE "^\\s+|\\s+$|\\s+\\(?=\\s\\)" ""  }} {{/* Overvite default values */}} 
    {{ end }}
+
+
    
-   
-   {{ with .settings }} 
+   {{ with .Get "settings" }} 
       {{ $settings = . }} {{/* Overvite default values */}} 
+   {{ end }}
+ {{ end }}
+{{/* 
+{{ $colsizes }}
+{{ $class }}
+{{ $settings }} */}}
+
+
+{{/* dummy value */}}
+{{ $context := . }}
+   {{ with .Get "context" }} 
+      {{ $context = . }} {{/* Overvite default values */}} 
    {{ end }}
 
 
-{{ .context.Page.Scratch.Add "count" 1 }}
-{{ $horizontalColCounter := sub (.context.Page.Scratch.Get "count") 1 }} {{/* array count starts at 0 */}}
 
 
+{{ $horizontalColCounter := 0 }}
+   {{ with .Get "context" }} 
+{{ .Page.Scratch.Add "count" 1 }}
+{{ $horizontalColCounter = sub (.Page.Scratch.Get "count") 1 }} {{/* array count starts at 0 */}}
+
+  {{ end }} 
 
 {{ with (split $colsizes " ")  }}
   {{ $colCount :=  len . }}
@@ -69,7 +102,7 @@ This shortcode is dependent of the columns.html shortcode and can not live outsi
     {{ $sum12 = add $sum12 (int .) }}
   {{ end }} 
   {{ if ne $sum12 12 }}
-    {{ errorf "The error is inside page: %s\nshortcode: {{ column colsizes=\"%s\" }}\nThe colsizes=\"%s\" sum must be equal to 12 \n" .context.Page.Path $colsizes $colsizes }}
+    {{ errorf "The error is inside page: %s\nshortcode: {{ column colsizes=\"%s\" }}\nThe colsizes=\"%s\" sum must be equal to 12 \n" $context.Page.Path $colsizes $colsizes }}
   {{ end }}
 
   {{/* Adding zebra stripes to even rows*/}}
@@ -110,6 +143,8 @@ This shortcode is dependent of the columns.html shortcode and can not live outsi
 
 
   <div class="{{ $class }}">
-  {{/* <p>Shild count: {{ $horizontalColCounter  }}</p> */}}
-    {{ .Inner }}
+  <p>Shild count: {{ $horizontalColCounter  }}</p>
+   {{ with $context.Inner }} 
+    {{ . }}
+    {{ end }}
   </div>
