@@ -5,7 +5,6 @@ draft: false
 ---
 
 ## This is a tes 1111 t
-<<<<<<< HEAD
 
 
 
@@ -22,6 +21,7 @@ draft: false
 
 
 {{< /columns >}}
+
 
 
 
@@ -49,6 +49,29 @@ draft: false
 {{% column %}} test morro {{% /column %}}
 
 {{< /columns >}}
-=======
-jaflksdjflkasdjf
->>>>>>> fffe3ecac89733edc17b0f6aec573511de13c347
+
+
+## Detta blir jo for dumt
+
+
+{{< columns colsizes="4 8" settings="zebra mirror" _class="box">}}
+
+{{% column %}} test morro {{% /column %}}
+
+{{% column %}} test morro {{% /column %}}
+
+{{% column %}} test morro {{% /column %}}
+
+{{% column %}} test morro {{% /column %}}
+
+{{% column %}} test morro {{% /column %}}
+
+{{% column %}} test morro {{% /column %}}
+
+{{% column %}} test morro {{% /column %}}
+
+{{% column %}} test morro {{% /column %}}
+
+{{% column %}} test morro {{% /column %}}
+
+{{< /columns >}}

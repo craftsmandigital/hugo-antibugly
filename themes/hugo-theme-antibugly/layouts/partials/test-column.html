@@ -26,13 +26,34 @@ This shortcode is dependent of the columns.html shortcode and can not live outsi
 
 
 
+{{/* Getting parameters from the parent shortcode colums */}}
+{{/* {{- with .Parent -}}
+
+   {{ with .Get "_class"}} 
+      {{ $dictionary.Set "class" . }}
+   {{ end }}
+
+   {{ with .Get "colsizes"}} 
+      {{ $dictionary.Set "colsizes" . }}
+   {{ end }}
+   
+   
+   {{ with .Get "settings"}} 
+      {{ $dictionary.Set "settings" . }}
+   {{ end }}
+
+{{ else }}
+    {{ errorf "The error is inside the page %s\nThis shortcode {{ column }} must be inside {{< columns >}} shortcode and can not live outside of {{< columns >}}\n" $.Page.Path }}
+{{ end }}
+ */}}
 
 
 
   
 
+{{ with .Get "Parent"}}
 
-{{ with .Get "class"}}
+{{ with .Get "_class"}}
          {{ $class = (printf "%s %s" $class . ) }}
    {{ end }}
 
@@ -48,6 +69,11 @@ This shortcode is dependent of the columns.html shortcode and can not live outsi
    {{ with .Get "settings" }} 
       {{ $settings = . }} {{/* Overvite default values */}} 
    {{ end }}
+ {{ end }}
+{{/* 
+{{ $colsizes }}
+{{ $class }}
+{{ $settings }} */}}
 
 
 {{/* dummy value */}}
