@@ -16,6 +16,7 @@
  */}}
 {{ with .Get "context"}}
 {{ .Page.Scratch.Set "count" 0 }}
+{{ $scratch.Set "context" . }}
 {{ end }}
 
 
