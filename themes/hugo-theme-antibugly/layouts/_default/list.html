@@ -51,9 +51,13 @@
         {{ partial "test-column" $dictionary }}
 {{ $dictionary.Set "Inner" "Gutta voice 6" }}
         {{ partial "test-column" $dictionary }} */}}
-
+{{ $s := slice }}
         {{- range .Paginator.Pages }}
-          {{ .Render "summary" }}
+{{ $s = $s | append (slice (.Render "summary")) }}
+          {{/* {{ .Render "summary" }} */}}
+        {{- end }}
+        {{- range $s}}
+{{ . }}
         {{- end }}
       </div>
 
