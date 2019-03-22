@@ -26,6 +26,19 @@
 {{ $dictionary.Set "_class" "box" }}
 
 {{ $dictionary.Set "context" . }} 
+
+
+
+
+{{ $s := slice }}
+        {{- range .Paginator.Pages }}
+{{ $s = $s | append (slice (.Render "summary")) }}
+          {{/* {{ .Render "summary" }} */}}
+        {{- end }}
+
+{{ $dictionary.Set "post" $s }} 
+
+
 {{/* Here goes the declaration fo the render array */}}
 
 {{/* 
@@ -51,14 +64,6 @@
         {{ partial "test-column" $dictionary }}
 {{ $dictionary.Set "Inner" "Gutta voice 6" }}
         {{ partial "test-column" $dictionary }} */}}
-{{ $s := slice }}
-        {{- range .Paginator.Pages }}
-{{ $s = $s | append (slice (.Render "summary")) }}
-          {{/* {{ .Render "summary" }} */}}
-        {{- end }}
-        {{- range $s}}
-{{ . }}
-        {{- end }}
       </div>
 
       <br>

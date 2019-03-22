@@ -6,7 +6,6 @@
 {{ $scratch := newScratch }}
 {{/* {{ $scratch.Set "Parent" $dictionary }} */}}
 {{ $scratch.Set "Parent" . }}
-{{ $scratch.Set "Inner" "Snabel bra text" }}
 {{/* {{ $scratch.Set "context" (dict "Inner" "Detta er en sabla bra test" ) }} */}}
 
 {{/*
@@ -26,8 +25,10 @@
 
 <div class="{{ $class }}">
 
-{{ partial "column" $scratch }}
-{{/* {{ range where .Get "Inner" }}
-  {{ partial "column" . }}
-{{ end }} */}}
+{{ with .Get "post"}}
+{{ range . }}
+  {{ $scratch.Set "Inner" . }}
+  {{ partial "column" $scratch }}
+{{ end }}
+{{ end }}
 </div>
