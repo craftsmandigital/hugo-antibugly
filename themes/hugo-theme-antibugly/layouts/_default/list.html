@@ -25,11 +25,15 @@
 {{ $dictionary.Set "settings" "zebra mirror" }}
 {{ $dictionary.Set "_class" "box" }}
 
+{{ $dictionary.Set "context" . }} 
+{{/* Here goes the declaration fo the render array */}}
 
+{{/* 
 {{ $scratch := newScratch }}
 {{ $scratch.Set "Parent" $dictionary }}
-{{ $scratch.Set "context" . }}
+{{ $scratch.Set "context" . }} */}}
 
+{{ partial "columns" $dictionary }}
 {{/* {{ partial "test-column2" (dict "context" . "Parent" $dictionary) }} */}}
 {{/* {{ partial "column" $scratch }} */}}
 

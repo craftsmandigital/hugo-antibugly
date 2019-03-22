@@ -5,9 +5,7 @@
 
 {{ $scratch := newScratch }}
 {{/* {{ $scratch.Set "Parent" $dictionary }} */}}
-{{ $scratch.Set "Parent" . }}
-{{ $scratch.Set "Inner" "Snabel bra text" }}
-{{/* {{ $scratch.Set "context" (dict "Inner" "Detta er en sabla bra test" ) }} */}}
+{{ $scratch.Set "context" . }}
 
 {{/*
  Reset the counter in parent shortcode.
@@ -15,9 +13,8 @@
  all its shilds "column" is rendered.
  https://discourse.gohugo.io/t/explanation-of-rendering-order/6162
  */}}
-{{ with .Get "context"}}
-{{ .Page.Scratch.Set "count" 0 }}
-{{ end }}
+{{ $.Page.Scratch.Set "count" 0 }}
+
 
 
 {{ with .Get "class"}}
@@ -25,9 +22,7 @@
 {{ end }}
 
 <div class="{{ $class }}">
-
-{{ partial "column" $scratch }}
-{{/* {{ range where .Get "Inner" }}
+{{ range where .Get "Inner" }}
   {{ partial "column" . }}
-{{ end }} */}}
+{{ end }}
 </div>

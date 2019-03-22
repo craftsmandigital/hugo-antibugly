@@ -1,4 +1,5 @@
 
+
 {{ $class := "columns is-multiline" }}
 
 
@@ -13,6 +14,7 @@
 
 
 
+
 {{ with .Get "class"}}
   {{ $class = (printf "%s %s" $class . ) }}{{/* Append to default values for column */}} 
 {{ end }}
@@ -20,3 +22,6 @@
 <div class="{{ $class }}">
   {{ .Inner }}
 </div>
+
+
+
