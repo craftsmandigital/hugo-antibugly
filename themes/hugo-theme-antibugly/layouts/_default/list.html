@@ -24,7 +24,14 @@
 {{ $dictionary.Set "colsizes" " oo oo2 4 s6f sa " }}
 {{ $dictionary.Set "settings" "zebra mirror" }}
 {{ $dictionary.Set "_class" "box" }}
-{{ partial "test-column2" (dict "context" . "Parent" $dictionary) }}
+
+
+{{ $scratch := newScratch }}
+{{ $scratch.Set "Parent" $dictionary }}
+{{ $scratch.Set "context" . }}
+
+{{/* {{ partial "test-column2" (dict "context" . "Parent" $dictionary) }} */}}
+{{/* {{ partial "column" $scratch }} */}}
 
 {{/* 
 {{ $dictionary.Set "context" . }}
