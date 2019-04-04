@@ -1,0 +1,41 @@
+{{ define "main" }}
+
+      <!-- Content -->
+      <div class="container">
+        <p class="title">{{ .Title }}</p>
+        <p class="subtitle">{{ .Date.Format "Jan 2, 2006" }}</p>
+
+        {{/* {{ partial "toc.html" . }} */}}
+        
+        <div class="content">
+          {{ .Content }}
+        </div>
+
+
+        {{/* {{ partial "gitinfo.html" . }}
+        {{ partial "taglist.html" . }} */}}
+      </div>
+
+
+{{/* 
+Page bundle test
+https://gohugo.io/content-management/page-bundles/
+
+*/}}
+
+{{ $headless := .Site.GetPage "/test/bundletest" }}
+{{ $reusablePages := $headless.Resources.Match "ja*" }}
+<h2>min store fete bundletest</h2>
+{{ range $reusablePages }}
+    <h3>{{ .Title }}</h3>
+    {{ .Content }}
+{{ end }}
+
+<h2>Slutt paa stor fet bundletest</h2>
+
+
+
+
+
+
+{{ end }}
