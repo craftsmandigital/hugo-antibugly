@@ -1,15 +1,15 @@
 ---
-title: "ja da (title)"
+title: "Gutta vois"
 date: 2019-03-13T16:02:36+01:00
 draft: false 
 # active: false 
 # headless: true
 widget: hero
-weight: 30
+weight: 10
 ---
-## her starter jada bundle
+## her starter gutta vois bundle
 
 {{< youtube w7Ft2ymGmfc >}}
 
 
-## her slutter jada bundle
+## her slutter gutta vois bundle

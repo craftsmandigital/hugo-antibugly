@@ -23,12 +23,32 @@ https://gohugo.io/content-management/page-bundles/
 
 */}}
 
+
+{{/* {{ range $index, $st := where ( $headless_bundle.Resources.ByType "page" ) ".Params.active" "!=" false }} */}}
+
+
 {{ $headless := .Site.GetPage "/test/bundletest" }}
-{{ $reusablePages := $headless.Resources.Match "ja*" }}
+{{/* {{ $reusablePages := $headless.Resources.Match "ja*" }} */}}
+{{ $reusablePages := $headless.Resources.ByType "page" }}
 <h2>min store fete bundletest</h2>
-{{ range $reusablePages }}
-    <h3>{{ .Title }}</h3>
-    {{ .Content }}
+{{/* {{ range $reusablePages }} */}}
+{{ range where $reusablePages ".Params.active" "!=" false }}
+    {{/* <h3>{{ .Title }}</h3> */}}
+    {{/* {{ .Content }} */}}
+
+
+
+{{ $widget := or .Params.widget "blank" }}
+
+  {{ $widget_path := printf "widgets/%s.html" $widget }}
+    {{/* {{ partial $widget_path $params }} */}}
+    {{ partial $widget_path . }}
+
+
+
+
+
+
 {{ end }}
 
 <h2>Slutt paa stor fet bundletest</h2>
