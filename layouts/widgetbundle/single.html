@@ -27,9 +27,14 @@ https://gohugo.io/content-management/page-bundles/
 {{/* {{ range $index, $st := where ( $headless_bundle.Resources.ByType "page" ) ".Params.active" "!=" false }} */}}
 
 
+
 {{ $headless := .Site.GetPage "/test/bundletest" }}
+
+{{ $reusablePages := $headless.Resources.ByType "page" }} {{/* index.md fetc page bundle (unrendered content)*/}}
+{{ if not $reusablePages }}
+  {{ $reusablePages = $headless.Pages }} {{/* _index.md fetc section (rendered content) */}}
+{{ end }}
 {{/* {{ $reusablePages := $headless.Resources.Match "ja*" }} */}}
-{{ $reusablePages := $headless.Resources.ByType "page" }}
 <h2>min store fete bundletest</h2>
 {{/* {{ range $reusablePages }} */}}
 {{ range where $reusablePages ".Params.active" "!=" false }}
@@ -50,19 +55,6 @@ https://gohugo.io/content-management/page-bundles/
 
 
 {{ end }}
-
-
-
-{{ $headless := .Site.GetPage "/test/bundletest" }}
-{{/* {{ range $headless }} */}}
-{{ $headless }}
-{{ range $headless.Pages}}
-  {{ .Content }}
-{{ end }}
-  {{/* {{ $widget_path := printf "widgets/%s.html" . }} */}}
-    {{/* {{ partial $widget_path . }} */}}
-{{/* {{ end }} */}}
-
 
 <h2>Slutt paa stor fet bundletest</h2>
 
