@@ -42,7 +42,6 @@ https://gohugo.io/content-management/page-bundles/
 
 {{/* {{ $reusablePages := $headless.Resources.Match "ja*" }} */}}
 <h2>min store fete bundletest</h2>
-<h2>{{ .Params.bundlePath }}</h2>
 {{/* {{ range $reusablePages }} */}}
 {{ range where $reusablePages ".Params.active" "!=" false }}
     {{/* <h3>{{ .Title }}</h3> */}}
