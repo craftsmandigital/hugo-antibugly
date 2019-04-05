@@ -30,10 +30,10 @@ https://gohugo.io/content-management/page-bundles/
 
 {{ $headless := .Site.GetPage "/test/bundletest" }}
 
-{{ $reusablePages := $headless.Resources.ByType "page" }} {{/* index.md fetc page bundle (unrendered content)*/}}
-{{ if not $reusablePages }}
-  {{ $reusablePages = $headless.Pages }} {{/* _index.md fetc section (rendered content) */}}
-{{ end }}
+{{ $reusablePages := or ($headless.Resources.ByType "page") $headless.Pages }} 
+{{/* index.md fetc page bundle (unrendered content)*/}}
+{{/* _index.md fetc section (rendered content) $headless.Pages*/}}
+
 {{/* {{ $reusablePages := $headless.Resources.Match "ja*" }} */}}
 <h2>min store fete bundletest</h2>
 {{/* {{ range $reusablePages }} */}}
