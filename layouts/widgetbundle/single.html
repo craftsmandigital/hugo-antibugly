@@ -51,6 +51,19 @@ https://gohugo.io/content-management/page-bundles/
 
 {{ end }}
 
+
+
+{{ $headless := .Site.GetPage "/test/bundletest" }}
+{{/* {{ range $headless }} */}}
+{{ $headless }}
+{{ range $headless.Pages}}
+  {{ .Content }}
+{{ end }}
+  {{/* {{ $widget_path := printf "widgets/%s.html" . }} */}}
+    {{/* {{ partial $widget_path . }} */}}
+{{/* {{ end }} */}}
+
+
 <h2>Slutt paa stor fet bundletest</h2>
 
 
