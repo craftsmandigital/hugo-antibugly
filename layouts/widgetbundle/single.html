@@ -27,18 +27,25 @@ https://gohugo.io/content-management/page-bundles/
 {{/* {{ range $index, $st := where ( $headless_bundle.Resources.ByType "page" ) ".Params.active" "!=" false }} */}}
 
 
-{{ $headless := . }}
+{{ $headless := . }} {{/* fetches pages in current folder */}}
 {{ with .Params.bundlePath }}
-   {{ $headless = $.Site.GetPage . }}
+   {{ $headless = $.Site.GetPage . }} {{/* fetches pages in external folder bundle/section index.md/_index.md */}}
 {{ end }}
+
+
 {{/* {{ $headless := .Site.GetPage ( .Param "bundlePath" ) }} */}}
 {{/* {{ $headless := .Site.GetPage "/test/bundletest" }} */}}
 {{/* {{ $headless := . }} */}}
 {{/* {{ $headless := or ( .Site.GetPage .Params.bundlePath ) . }} */}}
 
+
+
 {{ $reusablePages := or ($headless.Resources.ByType "page") $headless.Pages }} 
 {{/* index.md fetc page bundle (unrendered content)*/}}
 {{/* _index.md fetc section (rendered content) $headless.Pages*/}}
+
+
+
 
 {{/* {{ $reusablePages := $headless.Resources.Match "ja*" }} */}}
 <h2>min store fete bundletest</h2>
