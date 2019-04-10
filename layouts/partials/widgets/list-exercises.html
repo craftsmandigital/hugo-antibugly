@@ -1,0 +1,24 @@
+
+
+
+
+<section>
+    <div class="container has-background-primary">
+      <h1 class="title">
+      {{ .Title }}
+      </h1>
+      <h2 class="subtitle">
+       {{ .Content }} 
+      </h2>
+
+
+
+{{ with .Params.bundlePath }}
+  {{ $page := ($.Site.GetPage .) }}
+  {{ $params := (dict "page" $page "widget" "li") }}
+  {{ partial "widgetbundle" $params }}
+   {{/* {{ $headless := $.Site.GetPage . }} */}}
+    {{/* fetches pages in external folder bundle/section index.md/_index.md */}}
+{{ end }}
+    </div>
+</section>

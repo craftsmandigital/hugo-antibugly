@@ -1,0 +1,81 @@
+
+
+      <!-- Content -->
+      <div class="container">
+        <p class="title">{{ .Title }}</p>
+        <p class="subtitle">{{ .Date.Format "Jan 2, 2006" }}</p>
+
+        {{/* {{ partial "toc.html" . }} */}}
+        
+        <div class="content">
+          {{ .Content }}
+        </div>
+
+
+        {{/* {{ partial "gitinfo.html" . }}
+        {{ partial "taglist.html" . }} */}}
+      </div>
+
+
+{{/* 
+Page bundle test
+https://gohugo.io/content-management/page-bundles/
+
+*/}}
+
+
+{{/* {{ range $index, $st := where ( $headless_bundle.Resources.ByType "page" ) ".Params.active" "!=" false }} */}}
+
+
+{{ $headless := .page }} {{/* fetches pages in current folder */}}
+
+
+{{/* {{ $headless := .Site.GetPage ( .Param "bundlePath" ) }} */}}
+{{/* {{ $headless := .Site.GetPage "/test/bundletest" }} */}}
+{{/* {{ $headless := . }} */}}
+{{/* {{ $headless := or ( .Site.GetPage .Params.bundlePath ) . }} */}}
+
+
+
+{{ $reusablePages := or ($headless.Resources.ByType "page") $headless.Pages }} 
+{{/* index.md fetc page bundle (unrendered content)*/}}
+{{/* _index.md fetc section (rendered content) $headless.Pages*/}}
+
+
+
+{{/* {{ $actionPartial := "single_widget" }}
+{{ with .Params.widget }}
+  {{ if eq (substr . 0 -5) "list_" }}
+    {{ $actionPartial := "single_widget" }}
+  {{ end }}  
+{{ end }} */}}
+
+{{/* {{ $reusablePages := $headless.Resources.Match "ja*" }} */}}
+<h2>min store fete bundletest</h2>
+{{/* {{ range $reusablePages }} */}}
+{{ $widget := .widget }}
+{{ range where $reusablePages ".Params.active" "!=" false }}
+    {{/* <h3>{{ .Title }}</h3> */}}
+    {{/* {{ .Content }} */}}
+
+
+
+{{ $widget := or $widget .Params.widget "blank" }}
+
+  {{ $widget_path := printf "widgets/%s.html" $widget }}
+    {{/* {{ partial $widget_path $params }} */}}
+    {{ partial $widget_path . }}
+
+
+
+
+
+
+{{ end }}
+
+<h2>Slutt paa stor fet bundletest</h2>
+
+
+
+
+
