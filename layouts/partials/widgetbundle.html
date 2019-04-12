@@ -54,7 +54,17 @@ https://gohugo.io/content-management/page-bundles/
 <h2>min store fete bundletest</h2>
 {{/* {{ range $reusablePages }} */}}
 {{ $widget := .widget }}
-{{ range where $reusablePages ".Params.active" "!=" false }}
+{{/* 
+{{ $v1 := where .Site.Pages "Params.a" "v1" }}
+{{ $v2 := where .Site.Pages "Params.b" "v2" }}
+{{ $filtered := $v1 | intersect $v2 }}
+{{ range $filtered }} 
+*/}}
+
+
+
+{{ $filter := where $reusablePages ".Params.active" "!=" false }}
+{{ range $filter }}
     {{/* <h3>{{ .Title }}</h3> */}}
     {{/* {{ .Content }} */}}
 

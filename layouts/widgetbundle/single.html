@@ -1,2 +1,5 @@
- {{ $params := (dict "page" . "widget" "") }}
+{{ define "main" }}
+ {{/* {{ $params := (dict "page" . "widget" "") }} */}}
+ {{ $params := (dict "page" . ) }}
 {{ partial "widgetbundle" $params }}
+{{ end }}
