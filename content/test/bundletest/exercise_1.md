@@ -7,6 +7,9 @@ draft: false
 widget: list-exercises
 bundlePath: "/exercises"
 weight: 10
+filter_pagelist:
+- hips-stomac-sideways
+- one-foot-leg-press
 ---
 ## her starter trening 1.md bundle
 

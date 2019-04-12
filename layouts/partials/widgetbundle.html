@@ -37,6 +37,24 @@ https://gohugo.io/content-management/page-bundles/
 
 
 
+{{/* 
+TODO this stuff dont work for _index.md onely index.md work 
+solution is to range every page and test on Name.
+maybee make a partial that returns a list of pages that matches 
+
+*/}}
+{{ range .filter_pagelist }}
+  {{ with $headless.Resources.GetMatch  (printf "**%s.*" .)  }}
+  {{/* {{ with $headless.Resources.GetMatch  "**hips-rubber-band.*"  }} */}}
+
+<h2>YYY  {{ . }}</h2>
+
+{{ end }}
+<h2>XXX  {{ (printf "%s.*" .) }}</h2>
+<h2>XXX  {{ $headless.Dir }}</h2>
+
+{{ end }}
+
 {{ $reusablePages := or ($headless.Resources.ByType "page") $headless.Pages }} 
 {{/* index.md fetc page bundle (unrendered content)*/}}
 {{/* _index.md fetc section (rendered content) $headless.Pages*/}}
