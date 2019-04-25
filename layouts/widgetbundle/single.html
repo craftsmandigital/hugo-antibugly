@@ -1,5 +1,6 @@
 {{ define "main" }}
  {{/* {{ $params := (dict "page" . "widget" "") }} */}}
- {{ $params := (dict "page" . ) }}
-{{ partial "widgetbundle" $params }}
+ {{ $params := (dict "page" . "dir" "/test/bundletest") }}
+{{/* {{ partial "widgetbundle" $params }} */}}
+{{ partial "get-sub-pages" $params }}
 {{ end }}
