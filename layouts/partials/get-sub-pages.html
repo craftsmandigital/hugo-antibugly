@@ -1,11 +1,6 @@
 
 {{/* fetches pages in external folder bundle/section index.md/_index.md */}}
-
-  {{ $masterPage := ($.page.Site.GetPage .dir) }}
-
-
-{{/* {{ $masterPage := .page }} fetches pages in current folder */}}
-
+{{ $masterPage := ($.page.Site.GetPage .dir) }}
 
 {{ $subPages := or ($masterPage.Resources.ByType "page") $masterPage.Pages}} 
 {{/* index.md fetc page bundle (unrendered content)*/}}
