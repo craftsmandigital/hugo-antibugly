@@ -2,36 +2,6 @@
 {{/* fetches pages in external folder bundle/section index.md/_index.md */}}
 
   {{ $masterPage := ($.page.Site.GetPage .dir) }}
-      <!-- Content -->
-      <div class="container">
-        <p class="title">{{ .page.Title }}</p>
-        <p class="subtitle">{{ .page.Date.Format "Jan 2, 2006" }}</p>
-
-        {{/* {{ partial "toc.html" . }} */}}
-        
-        <div class="content">
-          {{ .page.Content }}
-        </div>
-
-        <div class="content">
-          {{ .page}}
-        </div>
-<p>=================================================</p>
-        <p class="title">{{ $masterPage.Title }}</p>
-        <p class="subtitle">{{ $masterPage.Date.Format "Jan 2, 2006" }}</p>
-
-        {{/* {{ partial "toc.html" . }} */}}
-        
-        <div class="content">
-          {{ $masterPage.Content }}
-        </div>
-        <div class="content">
-          {{ $masterPage.Pages}}
-        </div>
-<p>=================================================</p>
-        {{/* {{ partial "gitinfo.html" . }}
-        {{ partial "taglist.html" . }} */}}
-
 
 
 {{/* {{ $masterPage := .page }} fetches pages in current folder */}}
@@ -43,18 +13,7 @@
 
 
 {{ $filter := where $subPages ".Params.active" "!=" false }}
-{{ range $filter}}
-        <p class="title">{{ .Title }}</p>
-        <div class="content">
-    {{ .Content }}
-        </div>
-<p>-----------------------------------------------------------------</p>
-
-{{ end }}
 
 
-      </div>
-
-
-
+{{ return $filter }}
 

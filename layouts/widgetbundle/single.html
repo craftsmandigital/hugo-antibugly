@@ -2,5 +2,32 @@
  {{/* {{ $params := (dict "page" . "widget" "") }} */}}
  {{ $params := (dict "page" . "dir" "/test/bundletest") }}
 {{/* {{ partial "widgetbundle" $params }} */}}
-{{ partial "get-sub-pages" $params }}
+{{ $subPages := partial "get-sub-pages" $params }}
+      <div class="container">
+        <p class="title">{{ .Title }}</p>
+        <p class="subtitle">{{ .Date.Format "Jan 2, 2006" }}</p>
+
+        
+        <div class="content">
+          {{ .Content }}
+        </div>
+{{/* 
+        <div class="content">
+          {{ .page}}
+        </div> */}}
+<p>=================================================</p>
+
+{{ range $subPages}}
+        <p class="title">{{ .Title }}</p>
+        <div class="content">
+    {{ .Content }}
+        </div>
+<p>-----------------------------------------------------------------</p>
+
+{{ end }}
+
+
+      </div>
+
+
 {{ end }}
