@@ -1,4 +1,23 @@
+{{/*
+Description:
+    fetch the underlying pages of a folder
+    if the spesified folder has subfolders, then these pages
+    wil also be fetced
 
+Returnvalue:
+      Returns a list of pages --> all the pages under the spesified folder
+
+parameters:
+
+    .page   The page object of the calling object
+    .dir    The directory to fetch sub pages
+            https://gohugo.io/functions/getpage/#getpage-example
+
+example call:
+     {{ $params := (dict "page" . "dir" "/test/bundletest") }}
+     {{ $subPages := partial "get-sub-pages" $params }}
+
+ */}}
 {{/* fetches pages in external folder bundle/section index.md/_index.md */}}
 {{ $masterPage := ($.page.Site.GetPage .dir) }}
 
@@ -7,8 +26,8 @@
 {{/* _index.md fetc section (rendered content) $headless.Pages*/}}
 
 
-{{ $filter := where $subPages ".Params.active" "!=" false }}
+{{/* {{ $filter := where $subPages ".Params.active" "!=" false }} */}}
 
 
-{{ return $filter }}
+{{ return $subPages }}
 

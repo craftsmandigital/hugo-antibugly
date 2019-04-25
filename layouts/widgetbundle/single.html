@@ -17,7 +17,8 @@
         </div> */}}
 <p>=================================================</p>
 
-{{ range $subPages}}
+{{ $filter := where $subPages ".Params.active" "!=" false }}
+{{ range $filter}}
         <p class="title">{{ .Title }}</p>
         <div class="content">
     {{ .Content }}
