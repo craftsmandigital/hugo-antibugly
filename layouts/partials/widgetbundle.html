@@ -17,58 +17,6 @@
       </div>
 
 
-{{/* 
-Page bundle test
-https://gohugo.io/content-management/page-bundles/
-
-*/}}
-
-
-{{/* {{ range $index, $st := where ( $headless_bundle.Resources.ByType "page" ) ".Params.active" "!=" false }} */}}
-
-
-{{ $headless := .page }} {{/* fetches pages in current folder */}}
-
-
-{{/* {{ $headless := .Site.GetPage ( .Param "bundlePath" ) }} */}}
-{{/* {{ $headless := .Site.GetPage "/test/bundletest" }} */}}
-{{/* {{ $headless := . }} */}}
-{{/* {{ $headless := or ( .Site.GetPage .Params.bundlePath ) . }} */}}
-
-
-
-{{/* 
-TODO this stuff dont work for _index.md onely index.md work 
-solution is to range every page and test on Name.
-maybee make a partial that returns a list of pages that matches 
-
-*/}}
-{{ range .filter_pagelist }}
-  {{ with $headless.Resources.GetMatch  (printf "**%s.*" .)  }}
-  {{/* {{ with $headless.Resources.GetMatch  "**hips-rubber-band.*"  }} */}}
-
-<h2>YYY  {{ . }}</h2>
-
-{{ end }}
-<h2>XXX  {{ (printf "%s.*" .) }}</h2>
-<h2>XXX  {{ $headless.Dir }}</h2>
-
-{{ end }}
-
-{{ $reusablePages := or ($headless.Resources.ByType "page") $headless.Pages }} 
-{{/* index.md fetc page bundle (unrendered content)*/}}
-{{/* _index.md fetc section (rendered content) $headless.Pages*/}}
-
-
-
-{{/* {{ $actionPartial := "single_widget" }}
-{{ with .Params.widget }}
-  {{ if eq (substr . 0 -5) "list_" }}
-    {{ $actionPartial := "single_widget" }}
-  {{ end }}  
-{{ end }} */}}
-
-{{/* {{ $reusablePages := $headless.Resources.Match "ja*" }} */}}
 <h2>min store fete bundletest</h2>
 {{/* {{ range $reusablePages }} */}}
 {{ $widget := .widget }}
@@ -80,7 +28,10 @@ maybee make a partial that returns a list of pages that matches
 */}}
 
 
+{{ $reusablePages := partial "get-sub-pages" ((printf "/%s" .page.File.Dir) | strings.TrimRight "/") }} 
+{{/* {{ $reusablePages := partial "get-sub-pages"  "/test/bundletest" }} */}}
 
+    <h3>YYYYYYYYYYb {{ (printf "/%s" .page.File.Dir) | strings.TrimRight "/" }}</h3>
 {{ $filter := where $reusablePages ".Params.active" "!=" false }}
 {{ range $filter }}
     {{/* <h3>{{ .Title }}</h3> */}}

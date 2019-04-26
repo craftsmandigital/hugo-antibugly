@@ -1,0 +1,32 @@
+
+{{/*
+Description:
+    fetch the underlying pages of a folder
+    if the spesified folder has subfolders, then these pages
+    wil also be fetced. Both pagebundles and regular sections is alowed.
+
+Returnvalue:
+      Returns a clice of pages --> all the pages under the spesified folder
+
+parameters:
+
+    . (required)        Path to The folder with underlying sub pages.
+                        Can be either section or pagebundle
+                        example --> /posts/reusable-stuff
+
+example call:
+     {{ $subPages := partial "get-sub-pages" "/posts/reusable-stuff"}}
+ */}}
+
+
+{{/* fetches pages in external folder bundle/section index.md/_index.md
+https://gohugo.io/functions/getpage/#getpage-example */}}
+{{ $masterPage := (site.GetPage .) }} {{/* https://discourse.gohugo.io/t/site-vs-site-and-failed-netlify-builds/18334 */}}
+
+{{ $subPages := or ($masterPage.Resources.ByType "page") $masterPage.Pages}} 
+{{/* index.md fetc page bundle (unrendered content)*/}}
+{{/* _index.md fetc section (rendered content) $headless.Pages*/}}
+
+
+{{ return $subPages }}
+
