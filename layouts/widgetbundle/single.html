@@ -2,7 +2,7 @@
  {{/* {{ $params := (dict "page" . "widget" "") }} */}}
  {{ $params := (dict "page" . "dir" "/test/bundletest") }}
 {{/* {{ partial "widgetbundle" $params }} */}}
-{{ $subPages := partial "get-sub-pages" $params }}
+{{ $subPages := partial "get-sub-pages" "/test/bundletest" }}
       <div class="container">
         <p class="title">{{ .Title }}</p>
         <p class="subtitle">{{ .Date.Format "Jan 2, 2006" }}</p>
